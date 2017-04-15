@@ -1,0 +1,137 @@
+<html>
+
+<head>
+
+	<title>QR Code</title>
+
+	<style type="text/css">
+		
+		#caixa_leitor {
+			position: relative;
+			display: inline-block;
+		}
+
+		#result {
+			position: absolute;
+			bottom: 0;
+			background-color: rgba(255,255,255,0.8);
+			padding: 5px 12px;
+			width: 100%;
+			min-height: 15px;
+			font-family: monospace;
+			text-align: center;
+			margin: 0;
+			box-sizing: border-box;
+		}
+
+		#qr-canvas {
+			display: none;
+		}
+
+	</style>
+
+</head>
+
+<body>
+
+	<div id="caixa_leitor">
+		<video id="video" height="400" autoplay></video>
+		<pre id="result"></pre>
+	</div>
+
+	<canvas id="qr-canvas" width="640" height="480"></canvas>
+
+	<br><br>
+
+	<input type="text" id="campo">
+	<!-- <button type="button" onclick="gerarQR()">GERAR QR CODE</button> -->
+
+	<br><br>
+
+	<div id="qrcode"></div>
+
+
+
+	<script src="https://webrtc.github.io/adapter/adapter-latest.js"></script>
+
+	<script type="text/javascript" src="llqrcode.js"></script>
+
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.5.2/jquery.min.js"></script>
+	<script type="text/javascript" src="jquery-qrcode.min.js"></script>
+
+	<script type="text/javascript">
+
+		function gerarQR()
+		{
+			// texto = $('#campo').val();
+
+			texto = '' + Math.floor((Math.random() * 999999) + 100000);
+
+			$('#qrcode').empty()
+			.qrcode({
+				render: 'image', //image
+				text: texto,
+				size: 450
+			});
+
+			$('#campo').val(texto);
+
+			setTimeout(gerarQR, 2000);
+		}
+
+		gerarQR();
+
+
+
+		var localMediaStream = null;
+		var webkit=false;
+		var moz=false;
+
+		function st(str){
+			localMediaStream = str;
+			success(str);
+		}
+
+
+		function success(stream) {
+			video.srcObject = stream ;
+		}
+
+
+		qrcode.callback = read;
+
+		function read(a)
+		{
+			document.getElementById("result").innerHTML=a;
+		}	
+
+
+		var gum = function(){
+			navigator.mediaDevices.getUserMedia({video: {facingMode: {exact: 'environment'}}})
+			.then(stream => st(stream))
+			.catch(e => log(e));
+		}
+
+		var stop = () => video.srcObject && video.srcObject.getTracks().map(t => t.stop());
+
+		var log = msg => div.innerHTML += msg + "<br>";
+
+
+		var gCanvas = document.querySelector('#qr-canvas');
+		var ctx = gCanvas.getContext('2d');
+
+		function snapshot() {
+			if (localMediaStream) {
+				ctx.drawImage(video, 0, 0);
+				qrcode.decode();
+			}
+		}
+
+		setInterval(snapshot,300);
+
+		gum();
+	</script>
+
+</body>
+
+</html>
