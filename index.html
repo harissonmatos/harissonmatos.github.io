@@ -1,6 +1,8 @@
-<html>
-
+<!DOCTYPE html>
+<html lang="pt-BR">
 <head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 	<title>QR Code</title>
 
@@ -47,7 +49,7 @@
 	<div style="margin: auto; width: 700px;">
 
 		<div id="caixa_leitor">
-			<video id="video" width="100%" autoplay></video>
+			<video id="video" width="700" autoplay></video>
 			<pre id="result"></pre>
 		</div>
 
@@ -55,8 +57,10 @@
 
 		<br><br>
 
-		<input type="text" id="campo" style="width: 150px; margin: auto;">
-		<!-- <button type="button" onclick="gerarQR()">GERAR QR CODE</button> -->
+		<div id="campo" style="margin: auto; width: 150px; text-align: center;">
+			<!-- Número do QR gerado aleatóriamente aqui -->
+		</div>
+
 
 		<br><br>
 
@@ -79,8 +83,6 @@
 
 		function gerarQR()
 		{
-			// texto = $('#campo').val();
-
 			texto = '' + Math.floor((Math.random() * 999999) + 100000);
 
 			$('#qrcode').empty()
@@ -90,7 +92,7 @@
 				size: 300
 			});
 
-			$('#campo').val(texto);
+			$('#campo').text(texto);
 
 			setTimeout(gerarQR, 2000);
 		}
