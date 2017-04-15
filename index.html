@@ -55,12 +55,12 @@
 
 		<br><br>
 
-		<input type="text" id="campo">
+		<input type="text" id="campo" style="width: 150px; margin: auto;">
 		<!-- <button type="button" onclick="gerarQR()">GERAR QR CODE</button> -->
 
 		<br><br>
 
-		<div id="qrcode"></div>
+		<div id="qrcode" style="width: 300px; margin: auto;"></div>
 
 	</div>
 
@@ -85,7 +85,7 @@
 			.qrcode({
 				render: 'image', //image
 				text: texto,
-				size: 450
+				size: 300
 			});
 
 			$('#campo').val(texto);
