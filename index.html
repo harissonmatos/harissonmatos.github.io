@@ -44,21 +44,25 @@
 
 <body>
 
-	<div id="caixa_leitor">
-		<video id="video" width="100%" autoplay></video>
-		<pre id="result"></pre>
+	<div style="margin: auto; width: 700px;">
+
+		<div id="caixa_leitor">
+			<video id="video" width="100%" autoplay></video>
+			<pre id="result"></pre>
+		</div>
+
+		<canvas id="qr-canvas" width="640" height="480"></canvas>
+
+		<br><br>
+
+		<input type="text" id="campo">
+		<!-- <button type="button" onclick="gerarQR()">GERAR QR CODE</button> -->
+
+		<br><br>
+
+		<div id="qrcode"></div>
+
 	</div>
-
-	<canvas id="qr-canvas" width="640" height="480"></canvas>
-
-	<br><br>
-
-	<input type="text" id="campo">
-	<!-- <button type="button" onclick="gerarQR()">GERAR QR CODE</button> -->
-
-	<br><br>
-
-	<div id="qrcode"></div>
 
 
 
