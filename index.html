@@ -84,7 +84,7 @@
 			<div id="result"></div>
 		</div>
 
-		<canvas id="qr-canvas"></canvas>
+		<canvas id="qr-canvas" width="640" height="480"></canvas>
 
 		<br><br><br>
 
@@ -171,12 +171,13 @@
 
 		function snapshot() {
 			if (localMediaStream) {
+				ctx.clearRect(0, 0, ctx.width, ctx.height);
 				ctx.drawImage(video, 0, 0);
 				qrcode.decode();
 			}
 		}
 
-		setInterval(snapshot,1000);
+		setInterval(snapshot, 500);
 
 		gum();
 	</script>
