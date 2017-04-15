@@ -12,6 +12,12 @@
 			box-sizing: border-box;
 		}
 
+		*, *:before, *:after {
+			-webkit-box-sizing: border-box;
+			-moz-box-sizing: border-box;
+			box-sizing: border-box;
+		}
+
 		#caixa_leitor {
 			position: relative;
 			display: inline-block;
@@ -27,16 +33,42 @@
 			font-family: arial;
 			text-align: center;
 			margin: 0;
-			box-sizing: border-box;
-			font-size: 14px;
+			font-size: 12pt;
 		}
 
 		#qr-canvas {
 			display: none;
 		}
 
-		#video {
-			width: 640px;
+		.container {
+			margin: auto;
+		}
+
+
+
+
+		@media screen and (min-width: 769px ) {
+
+			.container {
+				width: 640px;
+			}
+
+			#video {
+				width: 640px;
+			}
+		
+		}
+
+		@media screen and (max-width: 480px) {
+
+			.container {
+				width: 100%;
+			}
+
+			#video {
+				width: 100%;
+			}
+		
 		}
 
 	</style>
@@ -45,16 +77,16 @@
 
 <body>
 
-	<div style="margin: auto; width: 640px;">
+	<div class="container">
 
 		<div id="caixa_leitor">
-			<video id="video" width="640" autoplay></video>
-			<pre id="result"></pre>
+			<video id="video" autoplay></video>
+			<div id="result"></div>
 		</div>
 
-		<canvas id="qr-canvas" width="640" height="480"></canvas>
+		<canvas id="qr-canvas"></canvas>
 
-		<br><br>
+		<br><br><br>
 
 		<div id="campo" style="margin: auto; width: 150px; text-align: center;">
 			<!-- Número do QR gerado aleatóriamente aqui -->
@@ -65,7 +97,7 @@
 
 		<div id="qrcode" style="width: 300px; margin: auto;"></div>
 
-		<br><br>
+		<br><br><br>
 
 	</div>
 
